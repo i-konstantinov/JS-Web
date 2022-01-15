@@ -4,7 +4,7 @@
 const http = require('http');
 const router = require('./router');
 const { homeController, aboutController } = require('./controllers/homeController');
-const { catalogController, createController } = require('./controllers/catalogController')
+const { catalogController, createController, deleteController } = require('./controllers/catalogController')
 
 
 // 2. ИНИЦИАЛИЗИРАНЕ НА СЪРВЪРА
@@ -17,6 +17,7 @@ router.get('/', homeController);
 router.get('/about', aboutController);
 router.get('/catalog', catalogController);
 router.post('/create', createController);
+router.get('/delete', deleteController);
 
 // - трябва да зададем на сървъра порт, на който да слуша (на който ще се стартира);
 // - стартираме го в терминал: node index.js;

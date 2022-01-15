@@ -8,7 +8,7 @@ function main(req, res) {
     console.log('>>>', req.method, req.url);
 
     const url = new URL(req.url, `http://${req.headers.host}`);
-
+    req.url = url;
 
     let handler;
     const actions = routes[url.pathname];
@@ -44,8 +44,6 @@ function post(pathname, handler) {
 
 module.exports = {
     main,
-    register,
     get,
-    post
-
+    post,
 }
