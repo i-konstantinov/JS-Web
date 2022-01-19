@@ -4,7 +4,7 @@ const router = Router();
 
 // ако след catalog няма друго
 router.get('/', (req, res) => {
-    res.sendFile(__dirname + '/sample-catalog.html');
+    res.sendFile(__dirname + '/catalog.html');
 });
 
 router.get('/:productID', (req, res) => {

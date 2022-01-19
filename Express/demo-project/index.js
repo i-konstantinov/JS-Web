@@ -4,20 +4,24 @@ const app = express();
 
 const catalogController = require('./catalog');
 
-const { loggedUser } = require('./auth');
+const logger = require('./auth');
 
+app.use('/content', express.static('public'));
+
+// app middleware
 app.use((req, res, next) => {
     console.log(`>>> ${req.method} ${req.url}`);
     next();
 });
 
+// middleware for router
 app.use(
     '/catalog',
     catalogController
 );
 
 
-app.get('/', (req, res) => {
+app.get('/hello', (req, res) => {
     // .send = ".write" + ".end"
     // send може да го извикаме само веднъж!
     res.send('Hello Express!');
@@ -48,26 +52,26 @@ app.get('/contact', (req, res) => {
 
 
 // visualizing file
-app.get('/hello', (req, res) => {
-    res.sendFile(__dirname + '/sample.html');
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
 });
 
 // downloading files
-// app.get('/sample', (req, res) => {
-//     res.download(__dirname + '/sample.pdf');
-// });
-
-// middleware example
-// middleware-a се подава между пътя и хендлъра;
-// параметъра next представлява следващата функция;
-// с него викаме следващият middleware или хендлър;
-// ако не извикаме next(); клиента ще зависне;
-// особено полезно ,ако middleware-a е асинхронен!;
+/*
+app.get('/download', (req, res) => {
+    res.download(__dirname + '/sample.pdf');
+});
+*/
+// middleware for single route
 app.get(
-    '/sample',
+    '/download',
+    (req, res, next) => {
+        console.log('Client requesting download');
+        next();
+    },
     (req, res) => {
-        res.download(__dirname + '/sample.pdf');
-    }
+        res.download(__dirname + '/sample.pdf')
+    }    
 );
 
 // изписва 404 за всеки път, който не е опоменат изрично

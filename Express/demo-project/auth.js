@@ -6,6 +6,4 @@ function loggedUser(req, res, next) {
     }
 }
 
-module.exports = {
-    loggedUser
-};
+module.exports = {loggedUser};
