@@ -7,18 +7,18 @@ router.get('/', (req, res) => {
     res.sendFile(__dirname + '/sample-catalog.html');
 });
 
-router.get('/catalog/:productID', (req, res) => {
+router.get('/:productID', (req, res) => {
     const paramsObj = req.params;
     console.log(paramsObj)
     res.send(`Product ID: ${paramsObj.productID}`);
 });
 
-router.get('/catalog/:productID/details', (req, res) => {
+router.get('/:productID/details', (req, res) => {
     const paramsObj = req.params;
     res.send(`Details for product: ${paramsObj.productID}`);
 });
 
-router.get('/catalog/:category/:productID', (req, res) => {
+router.get('/:category/:productID', (req, res) => {
     const paramsObj = req.params;
     console.log(paramsObj);
     res.send(`In catalog >>> Category: ${paramsObj.category} >>> Product: ${paramsObj.productID}`);

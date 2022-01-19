@@ -4,7 +4,17 @@ const app = express();
 
 const catalogController = require('./catalog');
 
-app.use('/catalog', catalogController);
+const { loggedUser } = require('./auth');
+
+app.use((req, res, next) => {
+    console.log(`>>> ${req.method} ${req.url}`);
+    next();
+});
+
+app.use(
+    '/catalog',
+    catalogController
+);
 
 
 app.get('/', (req, res) => {
@@ -43,9 +53,22 @@ app.get('/hello', (req, res) => {
 });
 
 // downloading files
-app.get('/download', (req, res) => {
-    res.download(__dirname + '/sample.pdf');
-});
+// app.get('/sample', (req, res) => {
+//     res.download(__dirname + '/sample.pdf');
+// });
+
+// middleware example
+// middleware-a се подава между пътя и хендлъра;
+// параметъра next представлява следващата функция;
+// с него викаме следващият middleware или хендлър;
+// ако не извикаме next(); клиента ще зависне;
+// особено полезно ,ако middleware-a е асинхронен!;
+app.get(
+    '/sample',
+    (req, res) => {
+        res.download(__dirname + '/sample.pdf');
+    }
+);
 
 // изписва 404 за всеки път, който не е опоменат изрично
 app.all('/*', (req, res) => {
