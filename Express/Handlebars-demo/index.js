@@ -12,19 +12,26 @@ let counter = 0;
 
 const products = [
     { name: 'Hammer', price: 12},
-    { name: 'Saw', price: 15.50},
+    { name: 'Saw', price: 14.59, promoted: true},
     { name: 'ScrewDriver', price: 9},
-    { name: 'Knife', price: 7.79}
+    { name: 'Knife', price: 7.79, promoted: true}
 ];
 
 app.get('/', (req, res) => {
     res.locals = {
         numberOfVisits: counter++,
-        items: products
+        user: {
+            username: "Ivan",
+            email: "address@mail.bg",
+            occupation: "student"
+        }
     };
-    res.render('home', {
-        layout: false,
-    });
+    res.render('home');
+});
+
+app.get('/catalog', (req, res) => {
+    res.locals = { items: products };
+    res.render('catalog');
 });
 
 app.listen(3000);

@@ -1,0 +1,10 @@
+<p>
+    <strong><u>List of products :</u></strong>
+    {{#if items}}
+        {{#each items}}
+        {{> listitem}}
+        {{/each}}
+    {{else}}
+        <p>No products</p>
+    {{/if}}
+</p>
