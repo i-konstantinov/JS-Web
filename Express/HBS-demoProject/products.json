@@ -1,0 +1,35 @@
+{
+  "80349195": {
+    "name": "Hammer",
+    "price": 10
+  },
+  "asdf1234": {
+    "name": "Widget",
+    "price": 12
+  },
+  "qwer4321": {
+    "name": "Tool",
+    "price": 15
+  },
+  "a9eb321e": {
+    "name": "Saw",
+    "price": 121
+  },
+  "5dc10421": {
+    "name": "Wrench",
+    "price": 123
+  },
+  "c1219356": {
+    "name": "new Tool",
+    "price": 20
+  },
+  "ec9d7586": {
+    "name": "watch",
+    "price": 21
+  },
+  "3c6205cb": {
+    "name": "Shovel",
+    "price": "15",
+    "promoted": true
+  }
+}

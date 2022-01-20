@@ -1,0 +1,5 @@
+{{#if promoted}}
+<li class="promoted">{{name}} - <b>$</b>{{price}} - on promotion <a href="/catalog/edit/{{_id}}">[edit]</a></li>
+{{else}}
+<li>{{name}} - <b>$</b>{{price}}<a href="/catalog/edit/{{_id}}">[edit]</a></li>
+{{/if}}
