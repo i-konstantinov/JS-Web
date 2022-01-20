@@ -8,10 +8,23 @@ app.engine('.hbs', hbs.engine);
 // казваме на конфигурационната променлива "view engine", какви разширения да търси;
 app.set('view engine', '.hbs');
 
-// handlebars очаква да намери папка layout в папка views
-// можем да прескочим това чрез {layout: false}
+let counter = 0;
+
+const products = [
+    { name: 'Hammer', price: 12},
+    { name: 'Saw', price: 15.50},
+    { name: 'ScrewDriver', price: 9},
+    { name: 'Knife', price: 7.79}
+];
+
 app.get('/', (req, res) => {
-    res.render('home', {layout: false});
+    res.locals = {
+        numberOfVisits: counter++,
+        items: products
+    };
+    res.render('home', {
+        layout: false,
+    });
 });
 
 app.listen(3000);
