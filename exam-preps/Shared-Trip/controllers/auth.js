@@ -1,22 +1,23 @@
 const { register, login } = require('../services/user');
 const { mapErrors } = require('../util/mappers');
+const { isGuest, isUser } = require('../middleware/guards');
 
 const router = require('express').Router();
 
 
-router.get('/register', (req, res) => {
-    res.render('register');
+router.get('/register', isGuest(), (req, res) => {
+    res.render('register', {title: "Register Page"});
 });
 
 
-router.post('/register', async (req, res) => {
+router.post('/register', isGuest(), async (req, res) => {
     try {
         if (req.body.password != req.body.rePassword) {
             throw new Error('Passwords don\'t match');
         }
         const user = await register(req.body.email, req.body.password, req.body.gender);
         req.session.user = user;
-        res.redirect('/'); // TODO check redirects requirements
+        res.redirect('/');
     } catch (err) {
         const errors = mapErrors(err);
         res.render('register', {
@@ -25,16 +26,17 @@ router.post('/register', async (req, res) => {
                 password: req.body.password,
                 rePassword: req.body.rePassword
             },
-            errors
+            errors,
+            title: "Register Page"
         });
     }
 });
 
-router.get('/login', (req, res) => {
-    res.render('login');
+router.get('/login', isGuest(), (req, res) => {
+    res.render('login', {title: "Login Page"});
 });
 
-router.post('/login', async (req, res) => {
+router.post('/login', isGuest(), async (req, res) => {
     try {  
         const user = await login(req.body.email, req.body.password);
         req.session.user = user;
@@ -43,12 +45,13 @@ router.post('/login', async (req, res) => {
         const errors = mapErrors(err);
         res.render('login', {
             data: { email : req.body.email },
-            errors
+            errors,
+            title: "Register Page"
         });
     }
 });
 
-router.get('/logout', (req, res) => {
+router.get('/logout', isUser(), (req, res) => {
     delete req.session.user;
     res.redirect('/');
 });

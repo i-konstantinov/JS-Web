@@ -45,12 +45,13 @@ async function login(email, password) {
 async function getUserByEmail(email) {
     // find user by full-match of field
     const user = await User.findOne({ email: new RegExp(`^${email}$`, 'i') });
-    console.log(user)
+
     return user;
 }
 
 
 module.exports = {
     login, 
-    register
+    register,
+    getUserByEmail
 }
