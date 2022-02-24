@@ -1,0 +1,28 @@
+<section class="container" id="shared-trips-page">
+    <header class="trip">
+        <h1>Welcome Sharetripers!</h1>
+        <p class="lead">Sharedtrip is the best way to road across the country.</p>
+        <p class="lead">Find yours Sharedtrip's buddies, when you share with us yours trip plans and let the
+            exploration begin!</p>
+    </header>
+    <div class="row text-center">
+        <!-- 
+                    https://autobild.bg/wp-content/uploads/2018/01/Mercedes-AMG-CLS-53-2018-Preis-Motor-Infos-1200x800-dffb5975c6d73154.jpg
+                    https://www.nastarta.com/wp-content/uploads/2018/04/Mercedes-Benz-A-Class-2019-1280-3d.jpg
+                    https://www.nastarta.com/wp-content/uploads/2017/12/2018-mercedes-benz-cls-8.jpg
+                    https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cybertruck-1-1574399754.jpeg
+                    https://www.audi.bg/media/Theme_Menu_Model_Dropdown_Item_Image_Component/root-bg-model-modelMenu-editableItems-20246-dropdown-92336-image/dh-487-a0e9a6/9896f0b2/1585833686/audi-a5-sportback-2020.jpg
+                   
+
+                 -->
+        {{#each trips}}
+        {{> tripPreview}}
+        {{else}}
+        <div class="no-trips">
+            <img src="https://www.stagweb.co.uk/img/activities/big/sexyhitchhiker1.jpg" />
+            <p class="lead">Hitchhiker time...</p>
+        </div>
+        {{/each}}
+
+    </div>
+</section>

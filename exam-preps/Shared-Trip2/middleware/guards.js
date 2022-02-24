@@ -3,7 +3,7 @@ function isUser() {
         if (req.session.user) {
             next();
         } else {
-            res.redirect('/');
+            res.redirect('/login');
         }
     };
 }
@@ -20,7 +20,20 @@ function isGuest() {
 }
 
 
+function isOwner() {
+    return function (req, res, next) {
+        const userId = req.session.user?._id;
+        if (res.locals.trip.creator._id == userId) {
+            next();
+        } else {
+            res.redirect('/login');
+        }
+    };
+}
+
+
 module.exports = {
     isUser,
-    isGuest
+    isGuest,
+    isOwner
 }
